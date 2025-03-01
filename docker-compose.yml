@@ -1,0 +1,19 @@
+services:
+  pytorch:
+    container_name: python-ml
+    stdin_open: true
+    tty: true
+    cap_add:
+        - SYS_PTRACE
+    security_opt:
+        - seccomp=unconfined
+    devices:
+        - /dev/kfd
+        - /dev/dri
+    group_add:
+        - video
+    ipc: host
+    shm_size: 8G
+    image: rocm/pytorch:latest
+    volumes:
+      - ./:/machine-learning
