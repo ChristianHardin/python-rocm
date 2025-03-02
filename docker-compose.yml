@@ -1,19 +1,13 @@
 services:
-  pytorch:
-    container_name: python-ml
-    stdin_open: true
-    tty: true
-    cap_add:
-        - SYS_PTRACE
-    security_opt:
-        - seccomp=unconfined
+  jupyter-notebook:
+    container_name: jupyter-notebook
+    build: .
+    ports:
+      - "8888:8888"
     devices:
-        - /dev/kfd
-        - /dev/dri
-    group_add:
-        - video
-    ipc: host
-    shm_size: 8G
-    image: rocm/pytorch:latest
+      - "/dev/kfd"
+      - "/dev/dri"
+    environment:
+      JUPYTER_ENABLE_LAB: yes
     volumes:
-      - ./:/machine-learning
+      - ./:/app
