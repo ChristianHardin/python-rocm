@@ -10,3 +10,5 @@ devenv.local.nix
 
 .venv*
 .ipynb_checkpoints
+.virutal_documents
+datasets
